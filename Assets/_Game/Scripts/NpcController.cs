@@ -31,38 +31,41 @@ public class NpcController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!randomGen)
+        counter -= Time.deltaTime;
+        if (!randomGen && counter <= 0)
         {
             randomPos = new Vector2(Random.Range(minRangeWalk.x, maxRangeWalk.x), Random.Range(minRangeWalk.y, maxRangeWalk.y));
             randomGen = true;
         }
-        var movement = Vector2.MoveTowards(transform.position, randomPos, moveSpeed * Time.deltaTime);
-        var posX = randomPos.x - transform.position.x;
-        var posY = randomPos.y - transform.position.y;
-        anim.SetFloat("MoveX", posX);
-        anim.SetFloat("MoveY", posY);
-        if (Vector2.Distance(transform.position, randomPos) > 0.01f)
+        else if (randomGen)
         {
-            anim.SetBool("isMoving", true);
-            var lastMove = movement;
-            anim.SetFloat("LastMoveX", posX);
-            anim.SetFloat("LastMoveY", posY);
-            transform.position = movement;
+            var movement = Vector2.MoveTowards(transform.position, randomPos, moveSpeed * Time.deltaTime);
+            var posX = randomPos.x - transform.position.x;
+            var posY = randomPos.y - transform.position.y;
+            anim.SetFloat("MoveX", posX);
+            anim.SetFloat("MoveY", posY);
+            if (Vector2.Distance(transform.position, randomPos) > 0.1f)
+            {
+                anim.SetBool("isMoving", true);
+                var lastMove = movement;
+                anim.SetFloat("LastMoveX", posX);
+                anim.SetFloat("LastMoveY", posY);
+                transform.position = movement;
+            }
+            else if (Vector2.Distance(transform.position, randomPos) < 0.1f)
+            {
+                anim.SetBool("isMoving", false);
+                Debug.Log("Reached Destination");
+                randomGen = false;
+                counter = timeToWaitAfterMove;
+            }
+            else
+            {
+                anim.SetBool("isMoving", false);
+                randomGen = false;
+                counter = timeToWaitAfterMove;
+            }
         }
-        else if (Vector2.Distance(transform.position, randomPos) < 0.01f && counter <= 0)
-        {
-            anim.SetBool("isMoving", false);
-            Debug.Log("Reached Destination");
-            randomGen = false;
-            counter = timeToWaitAfterMove;
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-            randomGen = false;
-        }
-
-        counter -= Time.deltaTime;
         
     }
 
