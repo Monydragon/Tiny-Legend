@@ -9,20 +9,29 @@ public class EnemyController : MonoBehaviour
     public int damage = 10;
     public float followSpeed;
     public float followDistance = 2f;
+    public float followRange = 5f;
+    private Vector2 startLocation;
     private Coroutine attackRef;
     private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        startLocation = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, playerTransform.position) > followDistance)
+        if(Vector2.Distance(transform.position, playerTransform.position) < followRange){
+            if (Vector2.Distance(transform.position, playerTransform.position) > followDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, followSpeed * Time.deltaTime);
+            }
+        }
+        else
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, followSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, startLocation, followSpeed * Time.deltaTime);
         }
     }
 

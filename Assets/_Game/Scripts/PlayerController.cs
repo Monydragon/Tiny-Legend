@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        transform.position += (Vector3)movement * Time.deltaTime * speed;
+        transform.position += (Vector3)movement.normalized * Time.deltaTime * speed;
     }
 
     public IEnumerator StartAttack()

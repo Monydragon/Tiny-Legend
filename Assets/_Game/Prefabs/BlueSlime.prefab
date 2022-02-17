@@ -102,7 +102,7 @@ MonoBehaviour:
   attackSpeed: 1
   damage: 10
   followSpeed: 3
-  followDistance: 2
+  followDistance: 1
 --- !u!61 &7826692169738733401
 BoxCollider2D:
   m_ObjectHideFlags: 0
