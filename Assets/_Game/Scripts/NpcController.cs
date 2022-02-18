@@ -59,12 +59,6 @@ public class NpcController : MonoBehaviour
                 randomGen = false;
                 counter = timeToWaitAfterMove;
             }
-            else
-            {
-                anim.SetBool("isMoving", false);
-                randomGen = false;
-                counter = timeToWaitAfterMove;
-            }
         }
         
     }

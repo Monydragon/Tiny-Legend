@@ -18,6 +18,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator playerAttackAnim;
     private Coroutine attackRef;
+    private void OnEnable()
+    {
+        EventManager.onActorDamaged += EventManager_onActorDamaged;
+    }
+
+    private void EventManager_onActorDamaged(GameObject obj, int dmg)
+    {
+        if (obj == this.gameObject)
+        {
+            health -= dmg;
+            if (health <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onActorDamaged -= EventManager_onActorDamaged;
+
+    }
 
     private void Awake()
     {
@@ -90,11 +112,7 @@ public class PlayerController : MonoBehaviour
             if(hits[i].collider.gameObject.tag == "Enemy")
             {
                 var enemy = hits[i].collider.gameObject.GetComponent<EnemyController>();
-                enemy.health -= damage;
-                if(enemy.health <= 0)
-                {
-                    Destroy(enemy.gameObject);
-                }
+                EventManager.ActorDamaged(enemy.gameObject, damage);
             }
         }
 

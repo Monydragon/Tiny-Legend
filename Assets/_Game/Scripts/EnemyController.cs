@@ -13,6 +13,29 @@ public class EnemyController : MonoBehaviour
     private Vector2 startLocation;
     private Coroutine attackRef;
     private Transform playerTransform;
+
+    private void OnEnable()
+    {
+        EventManager.onActorDamaged += EventManager_onActorDamaged;
+    }
+
+    private void EventManager_onActorDamaged(GameObject obj, int dmg)
+    {
+        if(obj == this.gameObject)
+        {
+            health -= dmg;
+            if(health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onActorDamaged -= EventManager_onActorDamaged;
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -47,11 +70,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator StartDamage(PlayerController player, int damage)
     {
         yield return new WaitForSeconds(attackSpeed);
-        player.health -= damage;
-        if(player.health <= 0)
-        {
-            player.gameObject.SetActive(false);
-        }
+        EventManager.ActorDamaged(player.gameObject, damage);
         attackRef = null;
     }
     private void OnDestroy()
