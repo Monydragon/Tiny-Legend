@@ -55,7 +55,6 @@ public class NpcController : MonoBehaviour
             else if (Vector2.Distance(transform.position, randomPos) < 0.1f)
             {
                 anim.SetBool("isMoving", false);
-                Debug.Log("Reached Destination");
                 randomGen = false;
                 counter = timeToWaitAfterMove;
             }
@@ -67,7 +66,9 @@ public class NpcController : MonoBehaviour
     {
         if (collision != null && collision.gameObject.tag == "Player")
         {
+            var player = collision.gameObject.GetComponent<PlayerController>();
             npcFlowchart.ExecuteBlock(startBlock.block);
+            npcFlowchart.SetBooleanVariable("hasApple", player.inventory.ItemExists("Apple"));
         }
     }
 }

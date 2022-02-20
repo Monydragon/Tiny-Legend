@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int health = 100;
+    public int health = 10;
     public float speed;
     public float attackSpeed = 0.5f;
     public int damage;
+    public InventoryObject inventory;
+
     private Vector2 movement;
     private Vector2 lastMove;
     [SerializeField]
@@ -21,13 +23,46 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.onActorDamaged += EventManager_onActorDamaged;
+        EventManager.onItemPickup += EventManager_onItemPickup;
+        EventManager.onItemUse += EventManager_onItemUse;
+        EventManager.onItemRemove += EventManager_onItemRemove;
     }
 
-    private void EventManager_onActorDamaged(GameObject obj, int dmg)
+    private void EventManager_onItemRemove(InventoryObject _inventory, ItemObject _item, int _amount)
     {
-        if (obj == this.gameObject)
+        var foundItem = _inventory.container.Find(x=> x.item == _item);
+        if (foundItem != null)
         {
-            health -= dmg;
+            if(foundItem.amount > 1)
+            {
+                foundItem.amount -= _amount;
+            }
+            else
+            {
+                _inventory.RemoveItem(_item);
+            }
+        }
+    }
+
+    private void EventManager_onItemUse(ItemObject _item, GameObject _obj)
+    {
+        if(_obj == this.gameObject)
+        {
+            Debug.Log($"Player Used Item: {_item.name}");
+            EventManager.ItemRemove(inventory,_item, 1);
+        }
+    }
+
+    private void EventManager_onItemPickup(InventoryObject _inventory, ItemObject _item, int _amount)
+    {
+        _inventory.AddItem(_item,_amount);
+    }
+
+    private void EventManager_onActorDamaged(GameObject _obj, int _dmg)
+    {
+        if (_obj == this.gameObject)
+        {
+            health -= _dmg;
             if (health <= 0)
             {
                 gameObject.SetActive(false);
@@ -38,6 +73,9 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         EventManager.onActorDamaged -= EventManager_onActorDamaged;
+        EventManager.onItemPickup -= EventManager_onItemPickup;
+        EventManager.onItemUse -= EventManager_onItemUse;
+        EventManager.onItemRemove -= EventManager_onItemRemove;
 
     }
 
@@ -119,5 +157,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackSpeed);
         playerAttackAnim.SetBool("isAttacking", false);
         attackRef = null;
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.container.Clear();
     }
 }
