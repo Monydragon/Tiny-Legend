@@ -11,6 +11,7 @@ public class NpcController : MonoBehaviour
     public float timeToWaitAfterMove;
     public Flowchart npcFlowchart;
     public BlockReference startBlock;
+    public InventoryObject inventory;
 
     private Vector2 startLocation;
     private Vector2 randomPos;
@@ -66,9 +67,7 @@ public class NpcController : MonoBehaviour
     {
         if (collision != null && collision.gameObject.tag == "Player")
         {
-            var player = collision.gameObject.GetComponent<PlayerController>();
             npcFlowchart.ExecuteBlock(startBlock.block);
-            npcFlowchart.SetBooleanVariable("hasApple", player.inventory.ItemExists("Apple"));
         }
     }
 }

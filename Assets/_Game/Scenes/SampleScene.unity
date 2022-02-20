@@ -1441,6 +1441,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &855125219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4543015429352264886, guid: b56a88a1453ef694b80758bb522cf43e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4543015429574061488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &855125225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855125219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9e2265932734148b820ec0d8d9c12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collection:
+  - {item: {fileID: 11400000, guid: ce2421bdba7c49b499f764c54789779e, type: 2}, amount: 1}
 --- !u!1 &919603442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,10 +1871,19 @@ GameObject:
   - component: {fileID: 1025977939}
   - component: {fileID: 1025977937}
   - component: {fileID: 1025977944}
-  - component: {fileID: 1025977943}
-  - component: {fileID: 1025977942}
   - component: {fileID: 1025977941}
   - component: {fileID: 1025977938}
+  - component: {fileID: 1025977940}
+  - component: {fileID: 1025977945}
+  - component: {fileID: 1025977943}
+  - component: {fileID: 1025977942}
+  - component: {fileID: 1025977952}
+  - component: {fileID: 1025977951}
+  - component: {fileID: 1025977950}
+  - component: {fileID: 1025977949}
+  - component: {fileID: 1025977948}
+  - component: {fileID: 1025977947}
+  - component: {fileID: 1025977946}
   m_Layer: 0
   m_Name: DanCharacterFlowChart
   m_TagString: Untagged
@@ -1903,8 +1932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 272
-    y: 205
+    x: 293
+    y: 170
     width: 140
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1914,10 +1943,14 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1025977940}
+  - {fileID: 1025977945}
+  - {fileID: 1025977943}
+  - {fileID: 1025977952}
+  - {fileID: 1025977951}
+  - {fileID: 1025977942}
   - {fileID: 1025977939}
   - {fileID: 1025977937}
-  - {fileID: 1025977943}
-  - {fileID: 1025977942}
   - {fileID: 1025977938}
   - {fileID: 1025977941}
   - {fileID: 1025977921}
@@ -1938,7 +1971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 209.5, y: 95}
+  scrollPos: {x: 207.5, y: 95}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -1950,8 +1983,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1025977928}
-  selectedCommands: []
+  - {fileID: 1025977950}
+  selectedCommands:
+  - {fileID: 1025977946}
   variables:
   - {fileID: 1025977936}
   - {fileID: 1025977944}
@@ -2567,7 +2601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: 20
-  indentLevel: 1
+  indentLevel: 0
 --- !u!114 &1025977939
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2811,6 +2845,23 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &1025977940
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151d7c7da9099214ca3087a7a1253e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 21
+  indentLevel: 0
+  inventorySource: {fileID: 11400000, guid: 30a12cd81afbe1a48b2236a24751660b, type: 2}
+  itemName: Apple
+  exists: {fileID: 1025977944}
 --- !u!114 &1025977941
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2834,12 +2885,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1025977920}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cb9773f2ca04e2bbf7a68ccfc23267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 24
+  indentLevel: 0
+--- !u!114 &1025977943
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 18
-  indentLevel: 2
-  storyText: 'You have an apple I see! '
+  itemId: 23
+  indentLevel: 1
+  storyText: You have an apple I see will you give it to me?
   description: 
   character: {fileID: 988516407}
   portrait: {fileID: 21300000, guid: 01f04b9c77f989a40a2e99647ddd5aa5, type: 3}
@@ -2852,7 +2917,22 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1025977943
+--- !u!114 &1025977944
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: hasApple
+  value: 0
+--- !u!114 &1025977945
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2864,8 +2944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 17
-  indentLevel: 1
+  itemId: 22
+  indentLevel: 0
   anyOrAllConditions: 0
   conditions:
   - compareOperator: 0
@@ -3095,7 +3175,79 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
---- !u!114 &1025977944
+--- !u!114 &1025977946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 31
+  indentLevel: 0
+  storyText: Here you go here is an apple just for you.
+  description: 
+  character: {fileID: 679953197}
+  portrait: {fileID: 21300000, guid: ea0048c998d7a254ea2837d73f75464a, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1025977947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4b240c9d0a3cd438e180208efcc415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 30
+  indentLevel: 0
+  inventorySource: {fileID: 11400000, guid: 30a12cd81afbe1a48b2236a24751660b, type: 2}
+  inventoryTarget: {fileID: 11400000, guid: 4ece0ca6e1b4f6e43b01df4328aabd4f, type: 2}
+  itemName: Apple
+  itemAmount: 1
+--- !u!114 &1025977948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 29
+  indentLevel: 0
+  storyText: well fine I don't want your apple anyway!
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1025977949
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3104,12 +3256,102 @@ MonoBehaviour:
   m_GameObject: {fileID: 1025977920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 0
-  key: hasApple
-  value: 0
+  nodeRect:
+    serializedVersion: 2
+    x: 136.5
+    y: 167
+    width: 91
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 28
+  blockName: Apple Refused
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 1025977948}
+  suppressAllAutoSelections: 0
+--- !u!114 &1025977950
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 136.5
+    y: 212
+    width: 78
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 27
+  blockName: Apple Given
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 1025977947}
+  - {fileID: 1025977946}
+  suppressAllAutoSelections: 0
+--- !u!114 &1025977951
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 26
+  indentLevel: 1
+  text: No
+  description: 
+  targetBlock: {fileID: 1025977949}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &1025977952
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025977920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 25
+  indentLevel: 1
+  text: Yes
+  description: 
+  targetBlock: {fileID: 1025977950}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
 --- !u!1 &1056929489
 GameObject:
   m_ObjectHideFlags: 0
@@ -7316,6 +7558,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6880832966240708235, guid: 864ec7b30d49d0a4ba60680f67c88379,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ece0ca6e1b4f6e43b01df4328aabd4f,
+        type: 2}
     - target: {fileID: 6880832966240708235, guid: 864ec7b30d49d0a4ba60680f67c88379,
         type: 3}
       propertyPath: startBlock

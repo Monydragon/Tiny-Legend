@@ -23,39 +23,17 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.onActorDamaged += EventManager_onActorDamaged;
-        EventManager.onItemPickup += EventManager_onItemPickup;
         EventManager.onItemUse += EventManager_onItemUse;
-        EventManager.onItemRemove += EventManager_onItemRemove;
     }
 
-    private void EventManager_onItemRemove(InventoryObject _inventory, ItemObject _item, int _amount)
-    {
-        var foundItem = _inventory.container.Find(x=> x.item == _item);
-        if (foundItem != null)
-        {
-            if(foundItem.amount > 1)
-            {
-                foundItem.amount -= _amount;
-            }
-            else
-            {
-                _inventory.RemoveItem(_item);
-            }
-        }
-    }
 
     private void EventManager_onItemUse(ItemObject _item, GameObject _obj)
     {
         if(_obj == this.gameObject)
         {
             Debug.Log($"Player Used Item: {_item.name}");
-            EventManager.ItemRemove(inventory,_item, 1);
+            inventory.RemoveItem(_item);
         }
-    }
-
-    private void EventManager_onItemPickup(InventoryObject _inventory, ItemObject _item, int _amount)
-    {
-        _inventory.AddItem(_item,_amount);
     }
 
     private void EventManager_onActorDamaged(GameObject _obj, int _dmg)
@@ -73,10 +51,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         EventManager.onActorDamaged -= EventManager_onActorDamaged;
-        EventManager.onItemPickup -= EventManager_onItemPickup;
         EventManager.onItemUse -= EventManager_onItemUse;
-        EventManager.onItemRemove -= EventManager_onItemRemove;
-
     }
 
     private void Awake()
@@ -139,6 +114,16 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position += (Vector3)movement.normalized * Time.deltaTime * speed;
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            inventory.Load();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            inventory.Save();
+        }
     }
 
     public IEnumerator StartAttack()

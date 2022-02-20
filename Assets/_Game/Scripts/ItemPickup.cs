@@ -12,7 +12,7 @@ public class ItemPickup : MonoBehaviour
         if (collision != null && collision.gameObject.tag == "Player")
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
-            EventManager.ItemPickup(player.inventory, item, amount);
+            player.inventory.AddItem(item, amount);
             Destroy(gameObject);
         }
     }
